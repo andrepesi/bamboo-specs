@@ -1,0 +1,10 @@
+{
+  "TaskType" : "NetFramework",
+  "Properties" : {
+    "args" : "BambooCI4",
+    "configuration" : "Release",
+    "projectPath" : "src\\BambooCIDotnetCore\\",
+    "projectName" : "BambooCIDotnetCore",
+    "version" : "${bamboo.GitVersion.AssemblySemVer}"
+  }
+}

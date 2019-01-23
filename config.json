@@ -1,0 +1,58 @@
+{
+  "Name": "BambooSpecgenerator",
+  "Key": "BamboSpec12",
+  "Repository": "bamboo_ci",
+  "RepositoryUrl": "https://github.com/andrepesi/bamboo_ci.git",
+  "DefaultBranch": "master",
+  "PlanBranchManagement": "BranchCreated",
+  "Plan": {
+    "Name": "bambooPlanSpec1",
+    "Key": "bdplan111",
+    "Description": "Test plan 2",
+    "Stages": [
+      {
+        "Name": "Build 2",
+        "Jobs": [
+          {
+            "Name": "NuanceJob 2",
+            "Key": "jb022",
+            "Tasks": [
+              {
+                "TaskType": "RepositoryCheckout",
+                "Properties": {}
+              },
+              {
+                "TaskType": "GitVersion",
+                "Properties": {
+                  "args": "/UpdateAssemblyInfo",
+                  "savedVars": "",
+                  "repoPath": ""
+                }
+              },
+              {
+                "TaskType": "NetCore",
+                "Properties": {
+                  "args": "",
+                  "configuration": "Release",
+                  "projectPath": "src\\BambooCIDotnetCore\\",
+                  "projectName": "BambooCIDotnetCore",
+                  "version": "${bamboo.GitVersion.AssemblySemVer}"
+                }
+              },
+              {
+                "TaskType":"Nuget",
+                "Properties": {
+                  "nugetToken": "${bamboo.NUGET_API_TOKEN_PASSWORD}",
+                  "projectPath": "src\\BambooCIDotnetCore\\",
+                   "version": "${bamboo.GitVersion.AssemblySemVer}",
+                   "nugetServer": "${bamboo.NUGET_TEST_SERVER}",
+				   "nugetPackagePath": "package"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
