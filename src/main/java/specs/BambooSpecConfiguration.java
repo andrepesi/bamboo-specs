@@ -35,7 +35,7 @@ public class BambooSpecConfiguration {
         net.Order = 3;
 
         tasks.add(net);
-        tasks.add(new TaskSpec(TaskType.RepositoryCheckout,null,0));
+        tasks.add(new TaskSpec(TaskType.RepositoryCheckout,RepositoryCheckoutBuilder.CreateDefault().Properties,0));
         tasks.add(new TaskSpec(TaskType.GitVersion, GitVersionBuilder.CreateDefault().Properties,1));
 
         tasks.stream().sorted(Comparator.comparing(t-> t.Order)).forEach((task) ->{

@@ -14,7 +14,7 @@ import java.util.Map;
 * */
 
 public class RepositoryCheckoutBuilder extends VcsCheckoutTask {
-    private Map<String,String> Properties;
+    public Map<String,String> Properties;
 
     RepositoryCheckoutBuilder(){
         super();
@@ -24,24 +24,20 @@ public class RepositoryCheckoutBuilder extends VcsCheckoutTask {
         super();
         Properties = properties;
         CheckoutItem checkoutItem = null;
-        checkoutItem = new CheckoutItem().defaultRepository();
-
-       /* if(properties != null) {
+        if(properties != null) {
 
             String repository = "";
 
-            if (properties.containsKey("repository") || !properties.getOrDefault("repository","").isEmpty())
+            if (!properties.containsKey("repository") ||  properties.getOrDefault("repository","") == "")
+                checkoutItem = new CheckoutItem().defaultRepository();
+            else
                 checkoutItem = new CheckoutItem().repository(repository);
-        }*/
-
-
-        checkoutItems(checkoutItem).cleanCheckout(false);
-
-        // build();
+        }
+        checkoutItems(checkoutItem);
     }
     public static  RepositoryCheckoutBuilder CreateDefault(){
         Map<String,String> config = new HashMap<>();
-       // config.put("repository","");
+        config.put("repository","");
         return new RepositoryCheckoutBuilder(config);
     }
 }

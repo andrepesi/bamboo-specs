@@ -1,10 +1,19 @@
 package tasks.builders.properties;
 
+import com.atlassian.bamboo.specs.api.codegen.annotations.Builder;
+import com.atlassian.bamboo.specs.api.codegen.annotations.ConstructFrom;
 import com.atlassian.bamboo.specs.api.model.AtlassianModuleProperties;
+import com.atlassian.bamboo.specs.api.model.plan.condition.AnyConditionProperties;
+import com.atlassian.bamboo.specs.api.model.plan.condition.ConditionProperties;
+import com.atlassian.bamboo.specs.api.model.plan.requirement.RequirementProperties;
 import com.atlassian.bamboo.specs.api.model.task.TaskProperties;
 import com.atlassian.bamboo.specs.api.codegen.annotations.Setter;
 import jdk.nashorn.internal.ir.annotations.Immutable;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Immutable
 public class NetCoreBuilderProperties  extends TaskProperties {
     @Setter("projectPath")
