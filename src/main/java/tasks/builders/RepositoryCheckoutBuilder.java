@@ -33,11 +33,18 @@ public class RepositoryCheckoutBuilder extends VcsCheckoutTask {
             else
                 checkoutItem = new CheckoutItem().repository(repository);
         }
-        checkoutItems(checkoutItem);
+       // checkoutItems(checkoutItem);
+        super.description("RepositoryCheckout").checkoutItems((checkoutItem));
+        super.build();
     }
     public static  RepositoryCheckoutBuilder CreateDefault(){
         Map<String,String> config = new HashMap<>();
         config.put("repository","");
         return new RepositoryCheckoutBuilder(config);
+    }
+    public static VcsCheckoutTask Create(){
+        return new VcsCheckoutTask()
+                .description("Checkout Default Repository")
+                .checkoutItems(new CheckoutItem().defaultRepository());
     }
 }

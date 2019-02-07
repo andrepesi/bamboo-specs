@@ -9,7 +9,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BaseTask extends AnyTask {
+public abstract  class BaseTask extends AnyTask {
+
     private MapBuilder configuration;
     public Map<String,String> Properties;
 
@@ -28,4 +29,16 @@ public class BaseTask extends AnyTask {
     public MapBuilder getConfigurationBuilder(){
         return this.configuration;
     }
+    public static AnyTask CreateBambooTask(@NotNull Map<String,String> properties, @NotNull String atlassianPlugin){
+        AnyTask task = new AnyTask(new AtlassianModule(atlassianPlugin));
+        MapBuilder configuration = new MapBuilder();
+        properties.forEach((key,value) -> {
+            configuration.put(key,value);
+        });
+        task.description("Build")
+                .configuration(configuration.build());
+        return task;
+
+    }
+
 }

@@ -3,13 +3,16 @@ package specs;
 import org.jetbrains.annotations.NotNull;
 
 import javax.xml.bind.ValidationException;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SpecKey {
     private final String Key;
-    SpecKey(@NotNull String key){
+    private final String OID ;
+    public SpecKey(@NotNull String key){
         Key = key.toUpperCase();
+        OID = UUID.randomUUID().toString().replace("-","").substring(0,12).toLowerCase();
     }
     private  void validateKey() throws ValidationException {
         Pattern pattern = Pattern.compile("[A-Z][0-9]");
@@ -21,5 +24,8 @@ public class SpecKey {
     public String getKey() throws ValidationException {
         this.validateKey();
         return this.Key;
+    }
+    public String getOID() {
+        return this.OID;
     }
 }

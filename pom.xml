@@ -5,13 +5,13 @@
   <parent>
     <groupId>com.atlassian.bamboo</groupId>
     <artifactId>bamboo-specs-parent</artifactId>
-    <version>6.7.1</version>
+    <version>6.1.0</version>
     <relativePath/>
   </parent>
 
   <groupId>com.atlassian.bamboo</groupId>
   <artifactId>bamboo-specs</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <packaging>jar</packaging>
 
   <dependencies>
@@ -67,7 +67,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>app</mainClass>
+              <mainClass>main</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -83,6 +83,16 @@
               <goal>shade</goal>
             </goals>
             <configuration>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                  </excludes>
+                </filter>
+              </filters>
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <shadedClassifierName>runnable</shadedClassifierName>
             </configuration>
@@ -105,8 +115,10 @@
               <excludes>META-INF/*.SF</excludes>
               <excludes>META-INF/*.DSA</excludes>
               <excludes>META-INF/*.RSA</excludes>
+              <excludes>META-INF/*.DES</excludes>
               <excludeGroupIds>junit,org.mockito,org.hamcrest</excludeGroupIds>
               <outputDirectory>${project.build.directory}/classes</outputDirectory>
+
             </configuration>
           </execution>
         </executions>

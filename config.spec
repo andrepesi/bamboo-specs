@@ -1,19 +1,20 @@
 {
-  "Name" : "BambooBrownBag",
-  "Key" : "KYBAMB074",
-  "Repository" : "playground",
-  "RepositoryUrl" : "https://andre_silva@git.srs.nuance.com/scm/eng/playground.git",
+  "Name" : "AndrePerairaSilva",
+  "Key" : "KYANDR314",
+  "OID" : "3ffca5763116",
+  "Repository" : "andre@git.com",
+  "RepositoryUrl" : null,
   "DefaultBranch" : "master",
   "PlanBranchManagement" : "BranchMatching",
   "Plan" : {
-    "Name" : "PLBAMB844",
-    "Key" : "KYPLBA235",
+    "Name" : "PLANDR770",
+    "Key" : "KYPLAN343",
     "Description" : "",
     "Stages" : [ {
       "Name" : "Build",
       "Jobs" : [ {
         "Name" : "Default Job",
-        "Key" : "JBBAMB535",
+        "Key" : "JBANDR018",
         "Tasks" : [ {
           "Order" : 0,
           "TaskType" : "RepositoryCheckout",
@@ -30,11 +31,40 @@
           }
         }, {
           "Order" : 3,
-          "TaskType" : "NetCore",
+          "TaskType" : "NetFramework",
           "Properties" : {
             "args" : "",
-            "configuration" : "${bamboo.GitVersion.AssemblySemVer}",
-            "projectPath" : "src/BambooBrownBag",
+            "projectPath" : "andre",
+            "version" : ""
+          }
+        }, {
+          "Order" : 4,
+          "TaskType" : "Nuget",
+          "Properties" : {
+            "nugetToken" : "${bamboo.NUGET_API_TOKEN_PASSWORD}",
+            "projectPath" : "src/ConsoleApp",
+            "nugetPackagePath" : null,
+            "nugetServer" : "${bamboo.NUGET_TEST_SERVER}",
+            "version" : "${bamboo.GitVersion.AssemblySemVer}"
+          }
+        }, {
+          "Order" : 4,
+          "TaskType" : "Nuget",
+          "Properties" : {
+            "nugetToken" : "${bamboo.NUGET_API_TOKEN_PASSWORD}",
+            "projectPath" : "src/ConsoleApp",
+            "nugetPackagePath" : null,
+            "nugetServer" : "${bamboo.NUGET_TEST_SERVER}",
+            "version" : "${bamboo.GitVersion.AssemblySemVer}"
+          }
+        }, {
+          "Order" : 4,
+          "TaskType" : "Nuget",
+          "Properties" : {
+            "nugetToken" : "${bamboo.NUGET_API_TOKEN_PASSWORD}",
+            "projectPath" : "src/ConsoleApp",
+            "nugetPackagePath" : null,
+            "nugetServer" : "${bamboo.NUGET_TEST_SERVER}",
             "version" : "${bamboo.GitVersion.AssemblySemVer}"
           }
         } ]

@@ -1,4 +1,5 @@
 package tasks.builders;
+import com.atlassian.bamboo.specs.api.builders.task.AnyTask;
 import com.atlassian.bamboo.specs.api.exceptions.PropertiesValidationException;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,6 +23,7 @@ public class GitVersionBuilder extends BaseTask {
    public static  GitVersionBuilder CreateDefault(){
        return Create("/UpdateAssemblyInfo","","");
    }
+
     public static GitVersionBuilder Create(String args,String savedVars,String repoPath){
         Map<String,String> config = new HashMap<>();
         config.put("args", args);
@@ -29,4 +31,5 @@ public class GitVersionBuilder extends BaseTask {
         config.put("repoPath", repoPath);
         return new GitVersionBuilder(config);
     }
+
 }

@@ -10,12 +10,12 @@ import java.util.Comparator;
 
 public class BambooSpecConfiguration {
 
-    public static ProjectSpec DefaultConfiguratioin(String projectName,String projectKey,
+    public static ProjectSpec DefaultConfiguratioin(String projectName,String projectKey,String projectOid,
                                                     String planName,String projectPath,
                                                     String planKey,String planDescription,
                                                     String jobKey,
                                                     NetVersion version){
-        ProjectSpec projectSpec = new ProjectSpec(projectName,projectKey);
+        ProjectSpec projectSpec = new ProjectSpec(projectName,projectKey,projectOid);
         PlanSpec planSpec = new PlanSpec(planName,planKey,planDescription);
         StageSpec stageSpec = new StageSpec("Build");
         JobSpec job = new JobSpec("Default Job",jobKey);
